@@ -27,7 +27,8 @@ class openstack_extras::client (
   $glance = true,
   $keystone = true,
   $nova = true,
-  $neutron = true
+  $neutron = true,
+  $openstack = true,
 ) {
 
   if $ceilometer {
@@ -52,5 +53,9 @@ class openstack_extras::client (
 
   if $neutron {
     include neutron::client
+  }
+
+  if $openstack {
+    ensure_packages('python-openstackclient')
   }
 }
